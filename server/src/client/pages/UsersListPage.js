@@ -15,6 +15,7 @@ class UsersList extends Component{
   }
 
   render(){
+
     return (
       <div>
         Here is the List of Users
@@ -36,8 +37,12 @@ const mapDispatchToProps = (dispatch) => ({
   fetchUsers: () => dispatch( fetchUsers() )
 })
 
+export const loadData = (store) => {
+  return store.dispatch( fetchUsers() );
+}
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(UsersList);
+
+export default {
+  loadData,
+  component: connect(mapStateToProps,mapDispatchToProps)(UsersList),
+}
