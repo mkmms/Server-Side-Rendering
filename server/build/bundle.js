@@ -340,7 +340,7 @@ exports.default = function (req, store) {
     )
   ));
 
-  return '\n    <html>\n      <head></head>\n      <body>\n        <div id=\'root\'>' + content + '</div>\n        <script>\n          window.INITIAL_STATE = ' + (0, _serializeJavascript2.default)(store.getState()) + '\n        </script>\n        <script src=\'bundle.js\'></script>\n      </body>\n    </html>\n  ';
+  return '\n    <html>\n      <head>\n        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">\n      </head>\n      <body>\n        <div id=\'root\'>' + content + '</div>\n        <script>\n          window.INITIAL_STATE = ' + (0, _serializeJavascript2.default)(store.getState()) + '\n        </script>\n        <script src=\'bundle.js\'></script>\n      </body>\n    </html>\n  ';
 };
 
 /***/ }),
@@ -393,7 +393,23 @@ var App = function App(_ref) {
     'div',
     null,
     _react2.default.createElement(_Header2.default, null),
-    (0, _reactRouterConfig.renderRoutes)(route.routes)
+    _react2.default.createElement(
+      'div',
+      { className: 'section no-pad-bot', id: 'index-banner' },
+      _react2.default.createElement(
+        'div',
+        { className: 'container' },
+        _react2.default.createElement('br', null),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          'div',
+          { className: 'row center' },
+          (0, _reactRouterConfig.renderRoutes)(route.routes)
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement('br', null)
+      )
+    )
   );
 };
 
@@ -713,27 +729,43 @@ var Header = function Header(_ref) {
   );
 
   return _react2.default.createElement(
-    'div',
-    null,
-    _react2.default.createElement(
-      _reactRouterDom.Link,
-      { to: '/' },
-      'SSR'
-    ),
+    'nav',
+    { className: 'light-blue lighten-1', role: 'navigation' },
     _react2.default.createElement(
       'div',
-      null,
+      { className: 'nav-wrapper container' },
       _react2.default.createElement(
         _reactRouterDom.Link,
-        { to: '/users' },
-        'users'
+        { to: '/', className: 'brand-logo' },
+        'SSR'
       ),
       _react2.default.createElement(
-        _reactRouterDom.Link,
-        { to: '/admins' },
-        'admins'
-      ),
-      authButton
+        'ul',
+        { className: 'right hide-on-med-and-down' },
+        _react2.default.createElement(
+          'li',
+          null,
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: '/users' },
+            'users'
+          )
+        ),
+        _react2.default.createElement(
+          'li',
+          null,
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: '/admins' },
+            'admins'
+          )
+        ),
+        _react2.default.createElement(
+          'li',
+          null,
+          authButton
+        )
+      )
     )
   );
 };

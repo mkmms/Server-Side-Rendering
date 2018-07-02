@@ -8,7 +8,15 @@ const App = ({route}) => {
   return (
     <div>
       <Header/>
-      { renderRoutes(route.routes) }
+      <div className="section no-pad-bot" id="index-banner">
+        <div className="container">
+          <br/><br/>
+          <div className="row center">
+            { renderRoutes(route.routes) }
+          </div>
+          <br/><br/>
+        </div>
+      </div>
     </div>
   )
 }
