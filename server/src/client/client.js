@@ -7,17 +7,28 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import { renderRoutes } from 'react-router-config';
+import axios from 'axios';
 
 import reducers from './reducers/index';
 import Routes from './Router';
 
-const enhancers = [];
-const middleware = [thunk, logger];
+const axiosInstance = axios.create({
+  baseURL: "/api"
+})
 
-const store = createStore(
+
+const enhancers = [];
+const middlewares = [
+  thunk.withExtraArgument(axiosInstance),
+  logger
+]
+
+
+
+const store = createStore( 
   reducers, 
   window.INITIAL_STATE, 
-  compose(applyMiddleware(...middleware), ...enhancers)
+  compose( applyMiddleware(...middlewares), ...enhancers ) 
 );
 
 
