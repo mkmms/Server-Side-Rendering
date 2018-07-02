@@ -23,6 +23,6 @@ app.get("*", (req, res) => {
 })
 
 
-app.listen(5001, () => {
-  console.log("Started at 5001");
+app.listen(3000, () => {
+  console.log("Started at 3000");
 })
